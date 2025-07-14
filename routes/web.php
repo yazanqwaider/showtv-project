@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Dashboard\EpisodeController;
+use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
+use App\Http\Controllers\Dashboard\ShowController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -26,4 +30,15 @@ Route::prefix('auth')->as('auth.')->group(function() {
     Route::post('register', [AuthController::class, 'register'])->name('register');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:web');
+});
+
+
+Route::prefix('dashboard')->as('dashboard.')->middleware(['auth:web'])->group(function() {
+    Route::get('/', [DashboardHomeController::class, 'home'])->name('home');
+
+    Route::resource('users', UserController::class);
+
+    Route::resource('shows', ShowController::class);
+
+    Route::resource('episodes', EpisodeController::class);
 });
