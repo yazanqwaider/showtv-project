@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="">
-        <h4>Episodes</h4>
+        <div class="d-flex justify-content-between my-2">
+            <h4>Episodes</h4>
+
+            <a href="{{ route('dashboard.episodes.create')}}" class="btn btn-success">Create New Episode</a>
+        </div>
 
         <table class="table table-bordered table-responsive table-hover">
             <thead>
@@ -12,6 +16,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Duration</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -23,6 +28,9 @@
                         <td>{{ $episode->title }}</td>
                         <td>{{ $episode->description }}</td>
                         <td>{{ $episode->duration }}</td>
+                        <td>
+                            <a href="{{ route('dashboard.episodes.edit', ['episode' => $episode->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

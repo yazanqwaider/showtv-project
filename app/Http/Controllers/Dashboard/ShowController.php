@@ -55,7 +55,7 @@ class ShowController extends Controller
         } catch (\Exception $e) {
             logger()->error($e);
             DB::rollBack();
-            return redirect()->route('dashboard.shows.index')->with(['status' => 'error', 'message' => 'Something Went Wrong !']);
+            return redirect()->back()->with(['status' => 'error', 'message' => 'Something Went Wrong !']);
         }
     }
 
@@ -105,7 +105,7 @@ class ShowController extends Controller
         } catch (\Exception $e) {
             logger()->error($e);
             DB::rollBack();
-            return redirect()->route('dashboard.shows.index')->with(['status' => 'error', 'message' => 'Something Went Wrong !']);
+            return redirect()->back()->with(['status' => 'error', 'message' => 'Something Went Wrong !']);
         }
     }
 
