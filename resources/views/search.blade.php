@@ -8,9 +8,10 @@
 
             <div class="d-flex gap-4">
                 @foreach ($results as $result)
-                    <div>
-                        {{ $result->title }}
-                    </div>
+                    <a href="{{ route('shows.show', ['show' => $result->id]) }}" class="episode-box">
+                        <img src="{{ $result->episodes->first()?->full_thumbnail_url }}">
+                        <h5 class="p-2">{{ $result->title }}</h5>
+                    </a>
                 @endforeach
             </div>
 

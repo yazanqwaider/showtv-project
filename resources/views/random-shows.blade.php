@@ -7,10 +7,10 @@
 
             <div class="d-flex gap-4">
                 @foreach ($random_shows as $random_show)
-                    <div class="episode-box">
-                        <img src="{{ url('storage/' . $random_show->thumbnail_url) }}">
+                    <a href="{{ route('shows.show', ['show' => $random_show->id]) }}" class="episode-box">
+                        <img src="{{ $random_show->episodes->first()?->full_thumbnail_url }}">
                         <h5 class="p-2">{{ $random_show->title }}</h5>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>

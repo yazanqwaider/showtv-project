@@ -45,7 +45,7 @@
                     <input type="file" name="thumbnail" id="thumbnail" class="form-control" accept="image/*">
 
                     @if ($episode->thumbnail_url)
-                        <img src="{{ url('storage/' . $episode->thumbnail_url) }}" width="100" height="100">
+                        <img src="{{ $episode->full_thumbnail_url }}" width="100" height="100">
                     @endif
                 </div>
 

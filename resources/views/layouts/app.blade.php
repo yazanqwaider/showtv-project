@@ -18,9 +18,9 @@
         .navbar-link {
             color: white;
             text-decoration: none;
-            font-size: 19px;
+            font-size: 17px;
             background: #b8b8b8;
-            padding: 7px 31px;
+            padding: 7px 28px;
             border-radius: 9px;
         }
 
@@ -30,6 +30,29 @@
 
         .home-link {
             background: #8a8a8a;
+        }
+
+        .episode-box {
+            width: 16%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f7f7f7;
+            box-shadow: 0px 0px 8px #979797;
+            text-decoration: none;
+            color: black;
+        }
+
+        .episode-box img {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .episode-box:hover {
+            transition: 0.5s;
+            cursor: pointer;
+            transform: scale(1.06)
         }
     </style>
 

@@ -16,7 +16,7 @@
             <a href="{{ route('dashboard.episodes.index') }}" class="navbar-link">Episodes</a>
         </li>
 
-        <li>
+        <li class="mx-5">
             <form action="{{ route('search') }}" method="get">
                 @csrf
 

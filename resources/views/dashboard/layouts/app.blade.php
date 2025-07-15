@@ -18,9 +18,9 @@
         .navbar-link {
             color: white;
             text-decoration: none;
-            font-size: 19px;
+            font-size: 17px;
             background: #b8b8b8;
-            padding: 7px 31px;
+            padding: 7px 28px;
             border-radius: 9px;
         }
 

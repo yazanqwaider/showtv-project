@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Show::class, 'show_id')->constrained();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->integer('duration')->nullable();
             $table->dateTime('airing_dt');
             $table->text('thumbnail_url');

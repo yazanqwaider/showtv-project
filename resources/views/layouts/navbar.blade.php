@@ -8,7 +8,7 @@
             <a href="{{ route('random-shows') }}" class="navbar-link">Random Shows</a>
         </li>
 
-        <li>
+        <li class="mx-5">
             <form action="{{ route('search') }}" method="get">
                 @csrf
 
@@ -16,7 +16,6 @@
                     value="{{ request()->search }}">
             </form>
         </li>
-
 
         @auth
             <li class="ms-auto">
