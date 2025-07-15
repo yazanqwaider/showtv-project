@@ -10,7 +10,7 @@ class ShowAiringTime extends Model
 {
     use HasFactory;
 
-    public $fillable = ['show_id', 'sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'date_time'];
+    public $fillable = ['show_id', 'sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'time'];
 
     /** Relationships */
 

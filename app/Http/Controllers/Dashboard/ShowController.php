@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Show;
+use App\Enums\ShowTypeEnum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ShowController extends Controller
@@ -13,7 +15,7 @@ class ShowController extends Controller
      */
     public function index()
     {
-        $shows = Show::paginate(15);
+        $shows = Show::withCount('episodes')->paginate(15);
 
         return view('dashboard.shows.index')->with(compact('shows'));
     }
@@ -23,7 +25,9 @@ class ShowController extends Controller
      */
     public function create()
     {
-        //
+        $show_types = ShowTypeEnum::cases();
+
+        return view('dashboard.shows.create')->with(compact('show_types'));
     }
 
     /**
@@ -31,7 +35,28 @@ class ShowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+             $show = Show::create($request->only('title', 'description', 'type'));
+
+            $show->airing_time_config()->create([
+                'sat' => isset($request->airing_time['sat']),
+                'sun' => isset($request->airing_time['sun']),
+                'mon' => isset($request->airing_time['mon']),
+                'tue' => isset($request->airing_time['tue']),
+                'wed' => isset($request->airing_time['wed']),
+                'thu' => isset($request->airing_time['thu']),
+                'fri' => isset($request->airing_time['fri']),
+                'time'=> $request->time,
+            ]);
+
+            DB::commit();
+            return redirect()->route('dashboard.shows.index')->with(['status' => 'success', 'message' => 'Show Added Successfully.']);
+        } catch (\Exception $e) {
+            logger()->error($e);
+            DB::rollBack();
+            return redirect()->route('dashboard.shows.index')->with(['status' => 'error', 'message' => 'Something Went Wrong !']);
+        }
     }
 
     /**
@@ -47,7 +72,10 @@ class ShowController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $show = Show::with('airing_time_config')->find($id);
+        $show_types = ShowTypeEnum::cases();
+
+        return view('dashboard.shows.edit')->with(compact('show_types', 'show'));
     }
 
     /**
@@ -55,7 +83,30 @@ class ShowController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $show = Show::find($id);
+
+        DB::beginTransaction();
+        try {
+            $show->update($request->only('title', 'description', 'type'));
+
+            $show->airing_time_config()->update([
+                'sat' => isset($request->airing_time['sat']),
+                'sun' => isset($request->airing_time['sun']),
+                'mon' => isset($request->airing_time['mon']),
+                'tue' => isset($request->airing_time['tue']),
+                'wed' => isset($request->airing_time['wed']),
+                'thu' => isset($request->airing_time['thu']),
+                'fri' => isset($request->airing_time['fri']),
+                'time'=> $request->time,
+            ]);
+
+            DB::commit();
+            return redirect()->route('dashboard.shows.index')->with(['status' => 'success', 'message' => 'Show Updated Successfully.']);
+        } catch (\Exception $e) {
+            logger()->error($e);
+            DB::rollBack();
+            return redirect()->route('dashboard.shows.index')->with(['status' => 'error', 'message' => 'Something Went Wrong !']);
+        }
     }
 
     /**

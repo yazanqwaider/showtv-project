@@ -1,48 +1,30 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('dashboard.layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@push('style')
+    <style>
+        .home-box {
+            width: 25%;
+            display: inline-block;
+            height: 112px;
+            text-align: center;
+            border: 1px solid #c4c4c4;
+            border-radius: 11px;
+            box-shadow: 0px 0px 10px #dbdbdb;
+            line-height: 108px;
+            text-decoration: none;
+            color: black;
+            background: #f4f4f4;
+            font-size: 23px;
+        }
+    </style>
+@endpush
 
-    <title>{{ config('app.name') }} - Dashboard</title>
+@section('content')
+    <div class="d-flex justify-content-evenly mt-5">
+        <a href="{{ route('dashboard.users.index') }}" class="home-box">Users</a>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
+        <a href="{{ route('dashboard.shows.index') }}" class="home-box">Shows</a>
 
-<body>
-    <div class="p-3 position-sticky" style="background: #ededed;">
-        <ul class="d-flex list-unstyled gap-3 align-items-center">
-            <li>
-                <a href="{{ route('home') }}">Home</a>
-            </li>
-
-            <li>
-                <form action="" method="get">
-                    @csrf
-
-                    <input type="search" name="search" class="form-control" placeholder="Search ...">
-                </form>
-            </li>
-
-            <li class="ms-auto">
-                <a href="{{ route('auth.logout') }}">Logout</a>
-            </li>
-        </ul>
+        <a href="{{ route('dashboard.episodes.index') }}" class="home-box">Episodes</a>
     </div>
-
-
-    <div>
-        <a href="{{ route('dashboard.users.index') }}">Users</a>
-
-        <a href="{{ route('dashboard.shows.index') }}">Shows</a>
-
-        <a href="{{ route('dashboard.episodes.index') }}">Episodes</a>
-    </div>
-</body>
-
-</html>
+@endsection

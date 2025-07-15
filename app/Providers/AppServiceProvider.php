@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Show;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,7 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $random_shows = Show::inRandomOrder()->limit(5)->get();
-        view()->share('random_shows', $random_shows);
+        Paginator::useBootstrapFive();
+
+        try {
+            $random_shows = Show::inRandomOrder()->limit(5)->get();
+            view()->share('random_shows', $random_shows);
+        } catch (\Throwable $th) {
+        }
     }
 }

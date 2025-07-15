@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('wed')->default(false);
             $table->boolean('thu')->default(false);
             $table->boolean('fri')->default(false);
-            $table->dateTime('date_time');
+            $table->time('time');
             $table->timestamps();
         });
     }

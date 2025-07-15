@@ -34,7 +34,7 @@ class AuthController extends Controller
         $photo_url = '';
 
         if($request->hasFile('photo')) {
-            $photo_url = $request->file('photo')->store('users/photos');
+            $photo_url = $request->file('photo')->store('users/photos', 'public');
         }
 
         $user = User::create([

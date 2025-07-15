@@ -13,7 +13,7 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        $episodes = Episode::paginate(15);
+        $episodes = Episode::with('show')->paginate(15);
 
         return view('dashboard.episodes.index')->with(compact('episodes'));
     }
