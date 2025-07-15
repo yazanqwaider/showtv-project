@@ -13,34 +13,38 @@
 </head>
 
 <body style="background: #f7f7f7">
-    <div class="w-50 shadow p-4 mt-5 mx-auto bg-white">
-        <form action="{{ route('auth.register') }}" method="post" enctype="multipart/form-data">
-            @csrf
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="w-50 shadow p-4 mx-auto bg-white">
+            <h5 class="text-center">Create a new account</h5>
 
-            <div class="form-group">
-                <label for="photo">Photo</label>
-                <input type="file" name="photo" id="photo" class="form-control" required>
-            </div>
+            <form action="{{ route('auth.register') }}" method="post" enctype="multipart/form-data">
+                @csrf
 
-            <div class="form-group mt-3">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="form-control" required placeholder="Name">
-            </div>
+                <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <input type="file" name="photo" id="photo" class="form-control" required>
+                </div>
 
-            <div class="form-group mt-3">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control" required placeholder="Email">
-            </div>
+                <div class="form-group mt-3">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" required placeholder="Name">
+                </div>
 
-            <div class="form-group mt-3">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required placeholder="Password">
-            </div>
+                <div class="form-group mt-3">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" required placeholder="Email">
+                </div>
 
-            <div class="text-center mt-3">
-                <button class="btn btn-success">Register</button>
-            </div>
-        </form>
+                <div class="form-group mt-3">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required placeholder="Password">
+                </div>
+
+                <div class="text-center mt-3">
+                    <button class="btn btn-success">Register</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

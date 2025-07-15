@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name') }} - Dashboard</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -37,12 +37,10 @@
 </head>
 
 <body>
-    @include('dashboard.layouts.navbar')
+    @include('layouts.navbar')
 
-    <div class="p-3">
-        @yield('content')
-    </div>
 
-    @stack('script')
+    @yield('content')
+
 </body>
 </html>

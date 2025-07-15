@@ -12,25 +12,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body style="background: #f7f7f7">
-    <div class="w-50 shadow p-4 mt-5 mx-auto bg-white">
-        <form action="{{ route('auth.login') }}" method="post">
-            @csrf
+<body style="background: #f7f7f7;">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="w-50 shadow p-4 mx-auto bg-white">
+            <h5 class="text-center">Login</h5>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control" required placeholder="Email">
-            </div>
+            <form action="{{ route('auth.login') }}" method="post">
+                @csrf
 
-            <div class="form-group mt-3">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required placeholder="Password">
-            </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" required placeholder="Email">
+                </div>
 
-            <div class="text-center mt-3">
-                <button class="btn btn-success">Login</button>
-            </div>
-        </form>
+                <div class="form-group mt-3">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required placeholder="Password">
+                </div>
+
+                <div class="text-center mt-3">
+                    <button class="btn btn-success">Login</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

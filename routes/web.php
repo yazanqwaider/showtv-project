@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Dashboard\EpisodeController;
-use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\Dashboard\ShowController;
 use App\Http\Controllers\Dashboard\UserController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Dashboard\EpisodeController;
+use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', HomeController::class)->name('home');
 
+Route::get('/search', [GeneralController::class, 'search'])->name('search');
+Route::get('/random-shows', [GeneralController::class, 'randomShows'])->name('random-shows');
 
 Route::prefix('auth')->as('auth.')->group(function() {
     Route::get('login', [AuthController::class, 'showLoginPage'])->name('show-login');
