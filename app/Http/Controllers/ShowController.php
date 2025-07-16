@@ -12,6 +12,8 @@ class ShowController extends Controller
      */
     public function show(Show $show)
     {
-        return view('shows.show')->with(compact('show'));
+        $is_followed = auth()->user()?->show_followings()->where('shows.id', $show->id)->exists();
+
+        return view('shows.show')->with(compact('show', 'is_followed'));
     }
 }

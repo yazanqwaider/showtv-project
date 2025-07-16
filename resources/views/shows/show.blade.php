@@ -3,10 +3,20 @@
 @section('content')
     <div class="p-3">
         <div>
-            <h2>{{ $show->title }}</h2>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h2>{{ $show->title }}</h2>
 
-            <p>{{ $show->description }}</p>
+                    <p>{{ $show->description }}</p>
+                </div>
 
+                <div>
+                    <button class="btn btn-{{ $is_followed ? 'danger' : 'success' }}" id="toggleShowFollowing"
+                        @disabled(!auth()->check())>
+                        {{ $is_followed ? 'UnFollow' : 'Follow' }}
+                    </button>
+                </div>
+            </div>
 
             <div>
                 <h4>Episodes</h4>
@@ -20,7 +30,28 @@
                     @endforeach
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
+
+
+@push('script')
+    <script>
+        const show = @json($show);
+
+        $(() => {
+            alert('test');
+            $('#toggleShowFollowing').on('click', function() {
+
+                $.post(`/user-show-following/${show.id}`, {}, function(response, status) {
+                    if (status === "success") {
+
+                    } else {
+                        alert('Something went wrong !');
+                    }
+                });
+
+            });
+        });
+    </script>
+@endpush
