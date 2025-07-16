@@ -8,6 +8,12 @@
             <a href="{{ route('random-shows') }}" class="navbar-link">Random Shows</a>
         </li>
 
+        @role('admin')
+            <li>
+                <a href="{{ route('dashboard.home') }}" class="navbar-link">Dashboard</a>
+            </li>
+        @endrole
+
         <li class="mx-5">
             <form action="{{ route('search') }}" method="get">
                 @csrf

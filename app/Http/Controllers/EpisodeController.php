@@ -12,6 +12,8 @@ class EpisodeController extends Controller
      */
     public function show(Episode $episode)
     {
-        return view('episodes.show')->with(compact('episode'));
+        $is_liked = auth()->user()?->episode_likes()->where('episodes.id', $episode->id)->exists();
+
+        return view('episodes.show')->with(compact('episode', 'is_liked'));
     }
 }

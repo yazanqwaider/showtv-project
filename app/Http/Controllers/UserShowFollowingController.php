@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 class UserShowFollowingController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Toggle the following of a specific show
      */
     public function toggleFollow(Request $request, Show $show)
     {
         $user = auth()->user();
-        $user->show_followings()->toggle($show->id);
+        $shows_ids = $user->show_followings()->toggle($show->id);
+        $is_attached = in_array($show->id, $shows_ids['attached']);
 
-        return response()->json(['status' => 'success']);
+        return response()->json(['status' => 'success', 'is_attached' => $is_attached]);
     }
 }

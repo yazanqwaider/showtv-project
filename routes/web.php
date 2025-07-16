@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 use App\Http\Controllers\Dashboard\ShowController as DashboardShowController;
 use App\Http\Controllers\Dashboard\EpisodeController as DashboardEpisodeController;
+use App\Http\Controllers\UserEpisodeLikeController;
 use App\Http\Controllers\UserShowFollowingController;
 
 /*
@@ -43,8 +44,9 @@ Route::resource('shows', ShowController::class)->only('show');
 Route::resource('episodes', EpisodeController::class)->only('show')->middleware('auth:web');
 
 Route::post('user-show-following/{show}', [UserShowFollowingController::class, 'toggleFollow'])->middleware('auth:web');
+Route::post('user-episode-like/{episode}', [UserEpisodeLikeController::class, 'toggleLike'])->middleware('auth:web');
 
-Route::prefix('dashboard')->as('dashboard.')->middleware(['auth:web'])->group(function() {
+Route::prefix('dashboard')->as('dashboard.')->middleware(['auth:web', 'role:admin'])->group(function() {
     Route::get('/', [DashboardHomeController::class, 'home'])->name('home');
 
     Route::resource('users', UserController::class);
